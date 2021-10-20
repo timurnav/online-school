@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@EnableTransactionManagement
 public class JpaConfiguration {
 
     @Bean
@@ -41,5 +42,12 @@ public class JpaConfiguration {
         properties.setProperty(AvailableSettings.FORMAT_SQL, "org.hibernate.dialect.PostgreSQLDialect");
 
         return properties;
+    }
+
+    @Bean
+    public JpaTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory.getObject());
+        return transactionManager;
     }
 }
