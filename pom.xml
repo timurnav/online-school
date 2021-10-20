@@ -14,6 +14,8 @@
 
         <spring.version>5.3.8</spring.version>
 
+        <hikari.version>4.0.3</hikari.version>
+        <postgresql.version>42.2.21</postgresql.version>
         <!-- Logging -->
         <logback.version>1.2.6</logback.version>
         <slf4j.version>1.7.32</slf4j.version>
@@ -38,6 +40,17 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikari.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
