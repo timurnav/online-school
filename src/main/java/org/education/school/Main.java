@@ -1,7 +1,9 @@
 package org.education.school;
 
 import org.education.school.repository.StudentRepository;
+import org.education.school.repository.TeacherRepository;
 import org.education.school.repository.entity.StudentEntity;
+import org.education.school.repository.entity.TeacherEntity;
 import org.education.school.repository.entity.UserContactsEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +20,13 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext("org.education.school.config");
         logger.info("Context loaded");
 
-        StudentRepository repository = context.getBean(StudentRepository.class);
+        StudentRepository studentRepository = context.getBean(StudentRepository.class);
+        TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
+
+        TeacherEntity teacher = new TeacherEntity();
+        teacher.setFirstName("AAA");
+        teacher.setLastName("BBB");
+        teacherRepository.save(teacher);
 
         StudentEntity entity = new StudentEntity();
         entity.setFirstName("Timur");
@@ -28,33 +36,24 @@ public class Main {
         entity.getContacts().setPhoneNumber("+79269549901");
         entity.getContacts().setGithubLink("https://github.com/timurnav");
         entity.getContacts().setTelegramLink("https://t.me/timurnav");
-//        entity.setRegistered(new Date());
 
-//        JpaTransactionManager transactionManager = context.getBean(JpaTransactionManager.class);
-//        TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);
-//        StudentEntity saved = transactionTemplate.execute(status -> {
-////            status.setRollbackOnly(); // to rollback manually
-//            return repository.saveNonTransactional(entity);
-//        });
-
-        StudentEntity saved = repository.save(entity);
+        StudentEntity saved = studentRepository.save(entity);
 
         StudentEntity another = new StudentEntity();
         another.setFirstName("Timur");
         another.setLastName("M");
-//        another.setContacts(new UserContactsEntity());
 
-        repository.save(another);
+        studentRepository.save(another);
 
         logger.info("saved");
 
-        List<StudentEntity> all = repository.getAll();
+        List<StudentEntity> all = studentRepository.getAll();
         logger.info("all");
 
-        StudentEntity one = repository.get(saved.getId());
+        StudentEntity one = studentRepository.get(saved.getId());
         logger.info("one");
 
-        repository.delete(one.getId());
+        studentRepository.delete(one.getId());
         logger.info("deleted");
     }
 }

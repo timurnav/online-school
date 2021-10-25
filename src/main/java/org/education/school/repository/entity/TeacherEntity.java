@@ -1,61 +1,34 @@
 package org.education.school.repository.entity;
 
-import java.util.List;
+import javax.persistence.*;
+import java.util.Date;
 
-public class TeacherEntity {
+@Entity
+//@Table(name = "teachers")
+@DiscriminatorValue("teacher")
+@NamedQueries({
+        @NamedQuery(name = TeacherEntity.GET_ALL, query = "SELECT t FROM TeacherEntity t")
+})
+public class TeacherEntity extends UserEntity {
 
-    private Integer id;
-    private String firstName;
-    private String lastName;
-    private UserContactsEntity contacts;
-    private List<CourseEntity> teachingCourses;
-    private TeacherEntity supervisor;
+    public static final String GET_ALL = "Teachers.getAll";
 
-    public Integer getId() {
-        return id;
-    }
+    //    private List<CourseEntity> teachingCourses;
+//    private TeacherEntity supervisor;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public UserContactsEntity getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(UserContactsEntity contacts) {
-        this.contacts = contacts;
-    }
-
-    public List<CourseEntity> getTeachingCourses() {
-        return teachingCourses;
-    }
-
-    public void setTeachingCourses(List<CourseEntity> teachingCourses) {
-        this.teachingCourses = teachingCourses;
-    }
-
-    public TeacherEntity getSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(TeacherEntity supervisor) {
-        this.supervisor = supervisor;
-    }
+    //    public List<CourseEntity> getTeachingCourses() {
+//        return teachingCourses;
+//    }
+//
+//    public void setTeachingCourses(List<CourseEntity> teachingCourses) {
+//        this.teachingCourses = teachingCourses;
+//    }
+//
+//    public TeacherEntity getSupervisor() {
+//        return supervisor;
+//    }
+//
+//    public void setSupervisor(TeacherEntity supervisor) {
+//        this.supervisor = supervisor;
+//    }
 }
