@@ -28,7 +28,7 @@ public class StudentEntity {
     @Column(nullable = false)
     private Date registered = new Date();
     @Embedded
-    private UserContactsEntity contacts;
+    private UserContactsEntity contacts = new UserContactsEntity();
 //    private List<CourseEntity> learningCourses;
 
     public Integer getId() {
