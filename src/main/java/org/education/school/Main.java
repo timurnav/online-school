@@ -25,6 +25,11 @@ public class Main {
         StudentEntity entity = new StudentEntity();
         entity.setFirstName("Timur");
         entity.setLastName("M");
+        entity.setContacts(new UserContactsEntity());
+        entity.getContacts().setEmail("timurnav@gmail.com");
+        entity.getContacts().setPhoneNumber("+79269549901");
+        entity.getContacts().setGithubLink("https://github.com/timurnav");
+        entity.getContacts().setTelegramLink("https://t.me/timurnav");
 
 //        JpaTransactionManager transactionManager = context.getBean(JpaTransactionManager.class);
 //        TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);

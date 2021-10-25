@@ -18,7 +18,8 @@ public class StudentEntity {
     private Integer id;
     private String firstName;
     private String lastName;
-//    private UserContactsEntity contacts;
+    @Embedded
+    private UserContactsEntity contacts;
 //    private List<CourseEntity> learningCourses;
 
     public Integer getId() {
@@ -45,14 +46,14 @@ public class StudentEntity {
         this.lastName = lastName;
     }
 
-//    public UserContactsEntity getContacts() {
-//        return contacts;
-//    }
-//
-//    public void setContacts(UserContactsEntity contacts) {
-//        this.contacts = contacts;
-//    }
-//
+    public UserContactsEntity getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(UserContactsEntity contacts) {
+        this.contacts = contacts;
+    }
+
 //    public List<CourseEntity> getLearningCourses() {
 //        return learningCourses;
 //    }
