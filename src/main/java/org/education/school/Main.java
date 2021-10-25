@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 
@@ -30,6 +28,7 @@ public class Main {
         entity.getContacts().setPhoneNumber("+79269549901");
         entity.getContacts().setGithubLink("https://github.com/timurnav");
         entity.getContacts().setTelegramLink("https://t.me/timurnav");
+//        entity.setRegistered(new Date());
 
 //        JpaTransactionManager transactionManager = context.getBean(JpaTransactionManager.class);
 //        TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);

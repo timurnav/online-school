@@ -1,15 +1,22 @@
 package org.education.school.repository.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class UserContactsEntity {
 
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String phoneNumber;
+    @Column(unique = true)
     private String telegramLink;
+    @Column(unique = true)
     private String linkedinLink;
+    @Column(unique = true)
     private String githubLink;
+    @Column(unique = true)
     private String facebookLink;
 
     public String getEmail() {
