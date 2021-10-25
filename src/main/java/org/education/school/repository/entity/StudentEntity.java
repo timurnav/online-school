@@ -24,12 +24,26 @@ public class StudentEntity {
     private String firstName;
     @Column(nullable = false, name = "surname")
     private String lastName;
-//    @Column(columnDefinition = "timestamp default now() not null") // not working :/
+    //    @Column(columnDefinition = "timestamp default now() not null") // not working :/
     @Column(nullable = false)
-    private Date registered = new Date();
+    private Date registered;
     @Embedded
-    private UserContactsEntity contacts = new UserContactsEntity();
+    private UserContactsEntity contacts;
 //    private List<CourseEntity> learningCourses;
+
+    @PostLoad
+    public void postLoad() {
+        if (contacts == null) {
+            contacts = new UserContactsEntity();
+        }
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (registered == null) {
+            registered = new Date();
+        }
+    }
 
     public Integer getId() {
         return id;
