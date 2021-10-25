@@ -7,19 +7,8 @@ import java.util.Date;
 @Table(name = "users")
 @DiscriminatorColumn(name = "user_type")
 @Inheritance
-@NamedQueries(
-        @NamedQuery(name = UserEntity.DELETE, query = "DELETE FROM StudentEntity s WHERE s.id=:id")
-)
-public class UserEntity {
+public class UserEntity extends GlobalSeqIdEntity {
 
-    public static final String DELETE = "Users.delete";
-
-    public static final int START_SEQ = 10000;
-
-    @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    private Integer id;
     private String firstName;
     private String lastName;
     private Date registered;
@@ -38,14 +27,6 @@ public class UserEntity {
         if (registered == null) {
             registered = new Date();
         }
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFirstName() {

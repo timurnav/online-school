@@ -1,43 +1,26 @@
 package org.education.school.repository.entity;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
-public class LessonEntity {
+@Entity
+@Table(name = "lessons")
+@NamedQueries({
+        @NamedQuery(name = LessonEntity.GET_ALL, query = "SELECT l FROM LessonEntity l")
+})
+public class LessonEntity extends LearningItemEntity {
 
-    private Integer id;
-    private String title;
-    private String description;
-    private List<HomeWorkEntity> homeWorks;
+    public static final String GET_ALL = "Lessons.getAll";
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<HomeWorkEntity> getHomeWorks() {
-        return homeWorks;
-    }
-
-    public void setHomeWorks(List<HomeWorkEntity> homeWorks) {
-        this.homeWorks = homeWorks;
-    }
+//    private List<HomeWorkEntity> homeWorks;
+//
+//    public List<HomeWorkEntity> getHomeWorks() {
+//        return homeWorks;
+//    }
+//
+//    public void setHomeWorks(List<HomeWorkEntity> homeWorks) {
+//        this.homeWorks = homeWorks;
+//    }
 }

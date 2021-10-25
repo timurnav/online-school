@@ -1,38 +1,22 @@
 package org.education.school.repository.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import java.util.Date;
 
-public class HomeWorkEntity {
+@Entity
+@Table(name = "home_works")
+@NamedQueries({
+        @NamedQuery(name = HomeWorkEntity.GET_ALL, query = "SELECT hw FROM HomeWorkEntity hw")
+})
+public class HomeWorkEntity extends LearningItemEntity {
 
-    private Integer id;
-    private String title;
-    private String description;
+    public static final String GET_ALL = "HomeWorks.getAll";
+
     private Date till;
     private int attempts;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public Date getTill() {
         return till;

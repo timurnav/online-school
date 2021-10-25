@@ -1,43 +1,27 @@
 package org.education.school.repository.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import java.util.List;
 
-public class CourseEntity {
+@Entity
+@Table(name = "courses")
+@NamedQueries({
+        @NamedQuery(name = CourseEntity.GET_ALL, query = "SELECT c FROM CourseEntity c")
+})
+public class CourseEntity extends LearningItemEntity {
 
-    private Integer id;
-    private String title;
-    private String description;
-    private List<LessonEntity> lessons;
+    public static final String GET_ALL = "Courses.getAll";
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<LessonEntity> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(List<LessonEntity> lessons) {
-        this.lessons = lessons;
-    }
+//    private List<LessonEntity> lessons;
+//
+//    public List<LessonEntity> getLessons() {
+//        return lessons;
+//    }
+//
+//    public void setLessons(List<LessonEntity> lessons) {
+//        this.lessons = lessons;
+//    }
 }
