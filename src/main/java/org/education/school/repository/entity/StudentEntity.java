@@ -1,14 +1,25 @@
 package org.education.school.repository.entity;
 
-import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "students")
+@NamedQueries({
+        @NamedQuery(name = StudentEntity.DELETE, query = "DELETE FROM StudentEntity s WHERE s.id=:id"),
+        @NamedQuery(name = StudentEntity.GET_ALL, query = "SELECT s FROM StudentEntity s")
+})
 public class StudentEntity {
 
+    public static final String DELETE = "Students.delete";
+    public static final String GET_ALL = "Students.getAll";
+
+    @Id
+    @GeneratedValue
     private Integer id;
     private String firstName;
     private String lastName;
-    private UserContactsEntity contacts;
-    private List<CourseEntity> learningCourses;
+//    private UserContactsEntity contacts;
+//    private List<CourseEntity> learningCourses;
 
     public Integer getId() {
         return id;
@@ -34,19 +45,19 @@ public class StudentEntity {
         this.lastName = lastName;
     }
 
-    public UserContactsEntity getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(UserContactsEntity contacts) {
-        this.contacts = contacts;
-    }
-
-    public List<CourseEntity> getLearningCourses() {
-        return learningCourses;
-    }
-
-    public void setLearningCourses(List<CourseEntity> learningCourses) {
-        this.learningCourses = learningCourses;
-    }
+//    public UserContactsEntity getContacts() {
+//        return contacts;
+//    }
+//
+//    public void setContacts(UserContactsEntity contacts) {
+//        this.contacts = contacts;
+//    }
+//
+//    public List<CourseEntity> getLearningCourses() {
+//        return learningCourses;
+//    }
+//
+//    public void setLearningCourses(List<CourseEntity> learningCourses) {
+//        this.learningCourses = learningCourses;
+//    }
 }
