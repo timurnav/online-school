@@ -24,13 +24,15 @@ public class Main {
         TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
 
         TeacherEntity teacher = new TeacherEntity();
-        teacher.setFirstName("AAA");
-        teacher.setLastName("BBB");
+        teacher.getFullName().setFirstName("AAA");
+        teacher.getFullName().setLastName("BBB");
+        teacher.setContacts(new UserContactsEntity());
+        teacher.getContacts().setEmail("aaa@gmail.com");
         teacherRepository.save(teacher);
 
         StudentEntity entity = new StudentEntity();
-        entity.setFirstName("Timur");
-        entity.setLastName("M");
+        entity.getFullName().setFirstName("Timur");
+        entity.getFullName().setLastName("M");
         entity.setContacts(new UserContactsEntity());
         entity.getContacts().setEmail("timurnav@gmail.com");
         entity.getContacts().setPhoneNumber("+79269549901");
@@ -40,8 +42,10 @@ public class Main {
         StudentEntity saved = studentRepository.save(entity);
 
         StudentEntity another = new StudentEntity();
-        another.setFirstName("Timur");
-        another.setLastName("M");
+        another.getFullName().setFirstName("Timur1");
+        another.getFullName().setLastName("M1");
+        another.setContacts(new UserContactsEntity());
+        another.getContacts().setEmail("another@gmail.com");
 
         studentRepository.save(another);
 
@@ -49,6 +53,9 @@ public class Main {
 
         List<StudentEntity> all = studentRepository.getAll();
         logger.info("all");
+
+        List<StudentEntity> allWithCont = studentRepository.getAllWithCont();
+        logger.info("getAllWithCont");
 
         StudentEntity one = studentRepository.get(saved.getId());
         logger.info("one");

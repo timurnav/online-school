@@ -1,34 +1,40 @@
 package org.education.school.repository.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 //@Table(name = "teachers")
 @DiscriminatorValue("teacher")
 @NamedQueries({
-        @NamedQuery(name = TeacherEntity.GET_ALL, query = "SELECT t FROM TeacherEntity t")
+        @NamedQuery(name = TeacherEntity.GET_ALL, query = "SELECT t FROM TeacherEntity t"),
+        @NamedQuery(name = TeacherEntity.DELETE, query = "DELETE FROM TeacherEntity t WHERE t.id=:id")
 })
 public class TeacherEntity extends UserEntity {
 
     public static final String GET_ALL = "Teachers.getAll";
+    public static final String DELETE = "Teachers.delete";
 
-    //    private List<CourseEntity> teachingCourses;
-//    private TeacherEntity supervisor;
+    @OneToMany(mappedBy = "teacher")
+    private List<CourseEntity> teachingCourses;
 
-    //    public List<CourseEntity> getTeachingCourses() {
-//        return teachingCourses;
-//    }
-//
-//    public void setTeachingCourses(List<CourseEntity> teachingCourses) {
-//        this.teachingCourses = teachingCourses;
-//    }
-//
-//    public TeacherEntity getSupervisor() {
-//        return supervisor;
-//    }
-//
-//    public void setSupervisor(TeacherEntity supervisor) {
-//        this.supervisor = supervisor;
-//    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private TeacherEntity supervisor;
+
+    public List<CourseEntity> getTeachingCourses() {
+        return teachingCourses;
+    }
+
+    public void setTeachingCourses(List<CourseEntity> teachingCourses) {
+        this.teachingCourses = teachingCourses;
+    }
+
+    public TeacherEntity getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(TeacherEntity supervisor) {
+        this.supervisor = supervisor;
+    }
 }

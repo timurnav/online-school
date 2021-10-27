@@ -39,4 +39,9 @@ public class StudentRepository {
         return em.createNamedQuery(StudentEntity.GET_ALL, StudentEntity.class)
                 .getResultList();
     }
+
+    public List<StudentEntity> getAllWithCont() {
+        return em.createNamedQuery(StudentEntity.GET_ALL_WITH_CONT, StudentEntity.class)
+                .getResultList();
+    }
 }

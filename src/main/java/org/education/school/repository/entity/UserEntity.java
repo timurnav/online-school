@@ -9,10 +9,12 @@ import java.util.Date;
 @Inheritance
 public class UserEntity extends GlobalSeqIdEntity {
 
-    private String firstName;
-    private String lastName;
-    private Date registered;
     @Embedded
+    private FullName fullName;
+    @Column(updatable = false)
+    private Date registered;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
     private UserContactsEntity contacts;
 
     @PostLoad
@@ -29,20 +31,12 @@ public class UserEntity extends GlobalSeqIdEntity {
         }
     }
 
-    public String getFirstName() {
-        return firstName;
+    public FullName getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(FullName fullName) {
+        this.fullName = fullName;
     }
 
     public Date getRegistered() {

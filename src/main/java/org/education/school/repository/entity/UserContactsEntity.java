@@ -1,10 +1,10 @@
 package org.education.school.repository.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
-@Embeddable
-public class UserContactsEntity {
+@Entity
+@Table(name = "contacts")
+public class UserContactsEntity extends GlobalSeqIdEntity {
 
     @Column(unique = true)
     private String email;
@@ -18,6 +18,8 @@ public class UserContactsEntity {
     private String githubLink;
     @Column(unique = true)
     private String facebookLink;
+    @OneToOne(mappedBy = "contacts")
+    private UserEntity owner;
 
     public String getEmail() {
         return email;
