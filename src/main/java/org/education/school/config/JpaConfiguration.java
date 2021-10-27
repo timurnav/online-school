@@ -1,9 +1,11 @@
 package org.education.school.config;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -16,6 +18,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("org.education.school.repository")
+@DependsOn("liquibase")
 public class JpaConfiguration {
 
     @Bean
@@ -36,7 +39,7 @@ public class JpaConfiguration {
         Properties properties = new Properties();
         properties.setProperty(AvailableSettings.DRIVER, "org.postgresql.Driver");
         // Generate schema using java classes, don't use in prod!
-        properties.setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop");
+        properties.setProperty(AvailableSettings.HBM2DDL_AUTO, "validate");
 
         // show formatted sql with postgres dialect
         properties.setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");

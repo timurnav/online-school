@@ -17,6 +17,7 @@
         <hibernate.version>5.5.8.Final</hibernate.version>
         <hikari.version>4.0.3</hikari.version>
         <postgresql.version>42.2.21</postgresql.version>
+        <liquibase.version>4.4.3</liquibase.version>
         <!-- Logging -->
         <logback.version>1.2.6</logback.version>
         <slf4j.version>1.7.32</slf4j.version>
@@ -61,6 +62,11 @@
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
         </dependency>
     </dependencies>
 

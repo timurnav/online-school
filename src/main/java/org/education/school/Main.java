@@ -2,6 +2,7 @@ package org.education.school;
 
 import org.education.school.repository.StudentRepository;
 import org.education.school.repository.TeacherRepository;
+import org.education.school.repository.entity.FullName;
 import org.education.school.repository.entity.StudentEntity;
 import org.education.school.repository.entity.TeacherEntity;
 import org.education.school.repository.entity.UserContactsEntity;
@@ -24,6 +25,7 @@ public class Main {
         TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
 
         TeacherEntity teacher = new TeacherEntity();
+        teacher.setFullName(new FullName());
         teacher.getFullName().setFirstName("AAA");
         teacher.getFullName().setLastName("BBB");
         teacher.setContacts(new UserContactsEntity());
@@ -31,6 +33,7 @@ public class Main {
         teacherRepository.save(teacher);
 
         StudentEntity entity = new StudentEntity();
+        entity.setFullName(new FullName());
         entity.getFullName().setFirstName("Timur");
         entity.getFullName().setLastName("M");
         entity.setContacts(new UserContactsEntity());
@@ -42,6 +45,7 @@ public class Main {
         StudentEntity saved = studentRepository.save(entity);
 
         StudentEntity another = new StudentEntity();
+        another.setFullName(new FullName());
         another.getFullName().setFirstName("Timur1");
         another.getFullName().setLastName("M1");
         another.setContacts(new UserContactsEntity());

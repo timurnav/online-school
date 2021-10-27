@@ -17,7 +17,7 @@ public class DataSourceConfiguration {
     public DataSource dataSource() throws IOException {
         Properties properties = new Properties();
         try (InputStream stream = this.getClass().getClassLoader()
-                .getResourceAsStream("datasource.properties")) {
+                .getResourceAsStream("db/datasource.properties")) {
             properties.load(stream);
         }
         HikariConfig config = new HikariConfig(properties);

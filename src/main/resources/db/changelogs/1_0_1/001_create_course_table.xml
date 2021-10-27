@@ -1,0 +1,41 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Timur" id="creatingCourseTable">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="courses"/>
+                <tableExists tableName="student_course"/>
+            </not>
+        </preConditions>
+        <createTable tableName="courses">
+            <column name="id" type="integer" defaultValue="nextval('global_seq')">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="title" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="teacher_id" type="integer"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="courses" baseColumnNames="teacher_id"
+                                 constraintName="course_teacher_ref" referencedTableName="users"
+                                 referencedColumnNames="id" onDelete="SET NULL"/>
+        <createTable tableName="student_course">
+            <column name="student_id" type="integer"/>
+            <column name="course_id" type="integer"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="student_course" baseColumnNames="student_id"
+                                 constraintName="student_course_ref" referencedTableName="users"
+                                 referencedColumnNames="id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="student_course" baseColumnNames="course_id"
+                                 constraintName="course_student_ref" referencedTableName="courses"
+                                 referencedColumnNames="id" onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

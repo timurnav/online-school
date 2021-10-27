@@ -8,15 +8,15 @@ public class UserContactsEntity extends GlobalSeqIdEntity {
 
     @Column(unique = true)
     private String email;
-    @Column(unique = true)
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
-    @Column(unique = true)
+    @Column(name = "telegram_link", unique = true)
     private String telegramLink;
-    @Column(unique = true)
+    @Column(name = "linkedin_link", unique = true)
     private String linkedinLink;
-    @Column(unique = true)
+    @Column(name = "github_link", unique = true)
     private String githubLink;
-    @Column(unique = true)
+    @Column(name = "facebook_link", unique = true)
     private String facebookLink;
     @OneToOne(mappedBy = "contacts")
     private UserEntity owner;
