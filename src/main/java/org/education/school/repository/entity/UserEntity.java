@@ -13,14 +13,13 @@ public class UserEntity extends GlobalSeqIdEntity {
     private FullName fullName;
     @Column(updatable = false)
     private Date registered;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_id")
-    private UserContactsEntity contacts;
+    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL)
+    private UserContactsEntity contacts = new UserContactsEntity(this);
 
     @PostLoad
     public void postLoad() {
         if (contacts == null) {
-            contacts = new UserContactsEntity();
+            this.contacts = new UserContactsEntity(this);
         }
     }
 
@@ -53,5 +52,8 @@ public class UserEntity extends GlobalSeqIdEntity {
 
     public void setContacts(UserContactsEntity contacts) {
         this.contacts = contacts;
+        if (this.contacts != null) {
+            this.contacts.setOwner(this);
+        }
     }
 }

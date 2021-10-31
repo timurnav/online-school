@@ -1,6 +1,5 @@
 package org.education.school.config;
 
-import liquibase.integration.spring.SpringLiquibase;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,6 +41,7 @@ public class JpaConfiguration {
         properties.setProperty(AvailableSettings.HBM2DDL_AUTO, "validate");
 
         // show formatted sql with postgres dialect
+        properties.setProperty("hibernate.physical_naming_strategy", "com.vladmihalcea.hibernate.type.util.CamelCaseToSnakeCaseNamingStrategy");
         properties.setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
         properties.setProperty(AvailableSettings.SHOW_SQL, "true");
         properties.setProperty(AvailableSettings.FORMAT_SQL, "org.hibernate.dialect.PostgreSQLDialect");

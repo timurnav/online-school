@@ -15,6 +15,7 @@
         <spring.version>5.3.8</spring.version>
 
         <hibernate.version>5.5.8.Final</hibernate.version>
+        <hibernate-types-55.version>2.13.0</hibernate-types-55.version>
         <hikari.version>4.0.3</hikari.version>
         <postgresql.version>42.2.21</postgresql.version>
         <liquibase.version>4.4.3</liquibase.version>
@@ -51,6 +52,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-55</artifactId>
+            <version>${hibernate-types-55.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>

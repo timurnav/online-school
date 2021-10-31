@@ -8,18 +8,26 @@ public class UserContactsEntity extends GlobalSeqIdEntity {
 
     @Column(unique = true)
     private String email;
-    @Column(name = "phone_number", unique = true)
+    @Column(unique = true)
     private String phoneNumber;
-    @Column(name = "telegram_link", unique = true)
+    @Column(unique = true)
     private String telegramLink;
-    @Column(name = "linkedin_link", unique = true)
+    @Column(unique = true)
     private String linkedinLink;
-    @Column(name = "github_link", unique = true)
+    @Column(unique = true)
     private String githubLink;
-    @Column(name = "facebook_link", unique = true)
+    @Column(unique = true)
     private String facebookLink;
-    @OneToOne(mappedBy = "contacts")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private UserEntity owner;
+
+    public UserContactsEntity() {
+    }
+
+    public UserContactsEntity(UserEntity owner) {
+        this.owner = owner;
+    }
 
     public String getEmail() {
         return email;
@@ -67,5 +75,13 @@ public class UserContactsEntity extends GlobalSeqIdEntity {
 
     public void setFacebookLink(String facebookLink) {
         this.facebookLink = facebookLink;
+    }
+
+    public UserEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserEntity owner) {
+        this.owner = owner;
     }
 }
