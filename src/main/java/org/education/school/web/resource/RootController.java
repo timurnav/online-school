@@ -38,7 +38,7 @@ public class RootController {
                 )
         );
         List<TeacherView> teachers = List.of(
-                new TeacherView(1, "Тимур Мухитдинов", "resources/img/aaa.jpg", "Lead Developer в SberDevices",
+                new TeacherView(1, "Тимур Мухитдинов", "aaa.jpg", "Lead Developer в SberDevices",
                         List.of("Основы Java", "Java Elementary", "Java Enterprise"))
         );
 

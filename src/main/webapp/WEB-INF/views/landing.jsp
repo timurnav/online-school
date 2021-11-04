@@ -165,7 +165,7 @@
                     <li class="teachers-item">
                         <div class="teacher">
                             <img class="teacher__img"
-                                 src="${teacher.img}" alt="${teacher.name} аватар">
+                                 src="/uploaded/images/${teacher.img}" alt="${teacher.name} аватар">
                             <div class="teacher__name">
                                     ${teacher.name}
                             </div>
