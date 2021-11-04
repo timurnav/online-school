@@ -64,7 +64,7 @@
                                  src="https://assets.ithillel.ua/assets/images/Emoji/rocket-42@2x.png">
                         </div>
                         <div class="achievement-text">
-                            <div class="achievement-text__primary">25000</div>
+                            <div class="achievement-text__primary">${stat.alumni}</div>
                             <div class="achievement-text__secondary">Выпускников Школы</div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                  src="https://assets.ithillel.ua/assets/images/Emoji/trophy-42@2x.png">
                         </div>
                         <div class="achievement-text">
-                            <div class="achievement-text__primary">8 лет</div>
+                            <div class="achievement-text__primary">${stat.yearsTeaching} лет</div>
                             <div class="achievement-text__secondary">Школа предоставляет образовательные услуги</div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                  src="https://assets.ithillel.ua/assets/images/Emoji/chart-increasing-42@2x.png">
                         </div>
                         <div class="achievement-text">
-                            <div class="achievement-text__primary">4800</div>
+                            <div class="achievement-text__primary">${stat.dau}</div>
                             <div class="achievement-text__secondary">человек в день посещают сайт Школы</div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                  src="https://assets.ithillel.ua/assets/images/Emoji/smiling-face-with-sunglasses-42@2x.png">
                         </div>
                         <div class="achievement-text">
-                            <div class="achievement-text__primary">300</div>
+                            <div class="achievement-text__primary">${stat.teachers}</div>
                             <div class="achievement-text__secondary">преподавателей-практиков</div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                                  src="https://assets.ithillel.ua/assets/images/Emoji/direct-hit-42@2x.png">
                         </div>
                         <div class="achievement-text">
-                            <div class="achievement-text__primary">10000</div>
+                            <div class="achievement-text__primary">${stat.jobsFound}</div>
                             <div class="achievement-text__secondary">трудоустроенных выпускников</div>
                         </div>
                     </div>
