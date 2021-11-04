@@ -1,6 +1,6 @@
-package org.education.school.web;
+package org.education.school.web.dto;
 
-public class SchoolStat {
+public class SchoolStatView {
 
     private int alumni;
     private int yearsTeaching;
@@ -8,10 +8,10 @@ public class SchoolStat {
     private int teachers;
     private int jobsFound;
 
-    public SchoolStat() {
+    public SchoolStatView() {
     }
 
-    public SchoolStat(int alumni, int yearsTeaching, int dau, int teachers, int jobsFound) {
+    public SchoolStatView(int alumni, int yearsTeaching, int dau, int teachers, int jobsFound) {
         this.alumni = alumni;
         this.yearsTeaching = yearsTeaching;
         this.dau = dau;

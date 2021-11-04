@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -126,82 +127,31 @@
         <div class="container">
             <h2 class="section-heading">Онлайн-курсы в Компьютерной школе</h2>
             <ul class="courses-list">
-                <li class="courses-item">
-                    <div class="course">
-                        <div class="course__head">
-                            <div class="course__title">
-                                Основы Java
+                <c:forEach var="course" items="${courses}">
+                    <li class="courses-item">
+                        <div class="course">
+                            <div class="course__head">
+                                <div class="course__title">
+                                        ${course.title}
+                                </div>
+                                <div class="course__level ${course.level}">
+                                        ${course.level}
+                                </div>
+                                <div class="course__start-date">
+                                    Старт группы: 06.08.2021
+                                </div>
                             </div>
-                            <div class="course__level entry">
-                                ENTRY
-                            </div>
-                            <div class="course__start-date">
-                                Старт группы: 06.08.2021
-                            </div>
-                        </div>
-                        <div class="course__details">
-                            <p class="course__description">
-                                Курс Introduction Java предназначен для тех, кто только начинает свой путь в
-                                IT-индустрии и
-                                не имеет представления об основах программирования. Поcле окончания курса Выпускники
-                                обладают достаточной базой для выбора пути дальнейшего развития в IT-сфере.
-                            </p>
-                            <div class="course__teacher">
-                                Тимур Мухитдинов
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="courses-item">
-                    <div class="course">
-                        <div class="course__head">
-                            <div class="course__title">
-                                Java Elementary
-                            </div>
-                            <div class="course__level basic">
-                                BASIC
-                            </div>
-                            <div class="course__start-date">
-                                Старт группы: 06.08.2021
+                            <div class="course__details">
+                                <p class="course__description">
+                                        ${course.description}
+                                </p>
+                                <div class="course__teacher">
+                                    Тимур Мухитдинов
+                                </div>
                             </div>
                         </div>
-                        <div class="course__details">
-                            <p class="course__description">
-                                На курсе Студенты научатся создавать Java-приложения, углубят свои знания в Java Core и
-                                на практике приобретут понимание принципов ООП. Этот курс рассчитан на слушателей с
-                                базовыми знаниями в любом С-подобном языке программирования.
-                            </p>
-                            <div class="course__teacher">
-                                Тимур Мухитдинов
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="courses-item">
-                    <div class="course">
-                        <div class="course__head">
-                            <div class="course__title">
-                                Java Enterprise
-                            </div>
-                            <div class="course__level advanced">
-                                ADVANCED
-                            </div>
-                            <div class="course__start-date">
-                                Старт группы: 06.08.2021
-                            </div>
-                        </div>
-                        <div class="course__details">
-                            <p class="course__description">
-                                В процессе обучения Студенты курса Java Enterprise освоят стек EE-технологий,
-                                используемый для создания приложений и сервисов бизнес-уровня, что позволит им стать
-                                более востребованными на современном IT-рынке.
-                            </p>
-                            <div class="course__teacher">
-                                Тимур Мухитдинов
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
     </section>
