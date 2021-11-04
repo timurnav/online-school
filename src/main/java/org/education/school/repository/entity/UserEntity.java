@@ -1,5 +1,7 @@
 package org.education.school.repository.entity;
 
+import org.education.school.service.dto.UserType;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,14 +9,22 @@ import java.util.Date;
 @Table(name = "users")
 @DiscriminatorColumn(name = "user_type")
 @Inheritance
-public class UserEntity extends GlobalSeqIdEntity {
+@NamedQueries(
+        @NamedQuery(name = UserEntity.GET_ALL, query = "SELECT u FROM UserEntity u LEFT JOIN FETCH u.contacts")
+)
+public abstract class UserEntity extends GlobalSeqIdEntity {
 
+    public static final String GET_ALL = "Users.getAll";
     @Embedded
     private FullName fullName;
+    private String password;
     @Column(updatable = false)
     private Date registered;
     @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL)
     private UserContactsEntity contacts = new UserContactsEntity(this);
+    private boolean banned;
+    @Version
+    private int version;
 
     @PostLoad
     public void postLoad() {
@@ -38,6 +48,14 @@ public class UserEntity extends GlobalSeqIdEntity {
         this.fullName = fullName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Date getRegistered() {
         return registered;
     }
@@ -56,4 +74,15 @@ public class UserEntity extends GlobalSeqIdEntity {
             this.contacts.setOwner(this);
         }
     }
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
+    }
+
+    @Transient
+    public abstract UserType type();
 }

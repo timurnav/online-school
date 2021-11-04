@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
-public class RootController {
+public class RootResource {
 
     @GetMapping("/")
     public String root(Model model) throws ParseException {

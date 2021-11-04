@@ -1,10 +1,11 @@
 package org.education.school.repository.entity;
 
+import org.education.school.service.dto.UserType;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@Table(name = "students")
 @DiscriminatorValue("student")
 @NamedQueries({
         @NamedQuery(name = StudentEntity.GET_ALL, query = "SELECT s FROM StudentEntity s"),
@@ -30,5 +31,10 @@ public class StudentEntity extends UserEntity {
 
     public void setLearningCourses(List<CourseEntity> learningCourses) {
         this.learningCourses = learningCourses;
+    }
+
+    @Override
+    public UserType type() {
+        return UserType.STUDENT;
     }
 }
