@@ -8,15 +8,17 @@ public class CourseView {
     private String level;
     private String description;
     private Date startDate;
+    private TeacherLinkView teacher;
 
     public CourseView() {
     }
 
-    public CourseView(String title, String level, String description, Date startDate) {
+    public CourseView(String title, String level, String description, Date startDate, TeacherLinkView teacher) {
         this.title = title;
         this.level = level;
         this.description = description;
         this.startDate = startDate;
+        this.teacher = teacher;
     }
 
     public String getTitle() {
@@ -49,5 +51,13 @@ public class CourseView {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public TeacherLinkView getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(TeacherLinkView teacher) {
+        this.teacher = teacher;
     }
 }

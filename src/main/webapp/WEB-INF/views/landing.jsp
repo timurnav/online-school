@@ -147,7 +147,7 @@
                                         ${course.description}
                                 </p>
                                 <div class="course__teacher">
-                                    Тимур Мухитдинов
+                                        ${course.teacher.name}
                                 </div>
                             </div>
                         </div>
@@ -161,24 +161,26 @@
             <h2 class="section-heading">Преподаватели Школы</h2>
             <p>Вас будут обучать практикующие специалисты, работающие в топовых компаниях.</p>
             <ul class="teachers-list">
-                <li class="teachers-item">
-                    <div class="teacher">
-                        <img class="teacher__img"
-                             src="resources/img/aaa.jpg" alt="Тимур Мухитдинов аватар">
-                        <div class="teacher__name">
-                            Тимур Мухитдинов
+                <c:forEach var="teacher" items="${teachers}">
+                    <li class="teachers-item">
+                        <div class="teacher">
+                            <img class="teacher__img"
+                                 src="${teacher.img}" alt="${teacher.name} аватар">
+                            <div class="teacher__name">
+                                    ${teacher.name}
+                            </div>
+                            <div class="teacher__title">
+                                    ${teacher.title}
+                            </div>
+                            <h4 class="teacher__courses-heading">Ведет курсы:</h4>
+                            <ul class="teacher__courses">
+                                <c:forEach var="teacherCourse" items="${teacher.courses}">
+                                    <li>${teacherCourse}</li>
+                                </c:forEach>
+                            </ul>
                         </div>
-                        <div class="teacher__title">
-                            Lead Developer в SberDevices
-                        </div>
-                        <h4 class="teacher__courses-heading">Ведет курсы:</h4>
-                        <ul class="teacher__courses">
-                            <li>Основы Java</li>
-                            <li>Java Elementary</li>
-                            <li>Java Enterprise</li>
-                        </ul>
-                    </div>
-                </li>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
     </section>
