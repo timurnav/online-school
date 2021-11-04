@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -138,7 +139,7 @@
                                         ${course.level}
                                 </div>
                                 <div class="course__start-date">
-                                    Старт группы: 06.08.2021
+                                    Старт группы: <fmt:formatDate pattern="dd.MM.yyyy" value="${course.startDate}"/>
                                 </div>
                             </div>
                             <div class="course__details">
