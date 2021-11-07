@@ -15,7 +15,17 @@
 <header>
     <div class="jumbotron pt-4">
         <div class="container">
-            <h3>Все пользователи школы</h3>
+            <div class="row">
+                <div class="col-10">
+                    <h3>Все пользователи школы</h3>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-outline-danger float-end" href="/logout">
+                        <span class="fa fa-sign-out-alt"></span>
+                        Выйти
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </header>
