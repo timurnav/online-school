@@ -18,6 +18,9 @@ public class Teacher {
     }
 
     public static Teacher of(TeacherEntity entity) {
+        if (entity == null) {
+            return null;
+        }
         return new Teacher(
                 entity.getId(),
                 entity.getFullName().toString(),

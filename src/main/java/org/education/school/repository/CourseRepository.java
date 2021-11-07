@@ -39,4 +39,14 @@ public class CourseRepository {
         return em.createNamedQuery(CourseEntity.GET_ALL, CourseEntity.class)
                 .getResultList();
     }
+
+    public List<CourseEntity> getAllWithLessons() {
+        return em.createNamedQuery(CourseEntity.GET_ALL_WITH_LESSONS, CourseEntity.class)
+                .getResultList();
+    }
+
+    public List<CourseEntity> getAllWithUsers() {
+        return em.createNamedQuery(CourseEntity.GET_ALL_WITH_USERS, CourseEntity.class)
+                .getResultList();
+    }
 }

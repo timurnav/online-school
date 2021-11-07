@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Teachers</title>
+    <title>Пользователи</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -22,6 +22,14 @@
 <main>
     <div class="jumbotron pt-4">
         <div class="container">
+            <a class="btn btn-primary" href="/admin/users/new-user?type=ADMIN">
+                <span class="fa fa-plus"></span>
+                Добавить админа
+            </a>
+            <a class="btn btn-primary" href="/admin/users/new-user?type=TEACHER">
+                <span class="fa fa-plus"></span>
+                Добавить учителя
+            </a>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -53,8 +61,11 @@
                                         </a>
                                     </c:otherwise>
                                 </c:choose>
-                                <a class="btn btn-warn" href="admin/users/resetPassword/${user.id}">
+                                <a class="btn btn-warn" href="/admin/users/resetPassword/${user.id}">
                                     <span class="fas fa-key"></span>
+                                </a>
+                                <a class="btn btn-warn" href="/admin/users/edit/${user.id}">
+                                    <span class="fas fa-edit"></span>
                                 </a>
                             </c:if>
                         </td>

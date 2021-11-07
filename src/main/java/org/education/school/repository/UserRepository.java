@@ -16,7 +16,12 @@ public class UserRepository {
 
     @Transactional
     public UserEntity save(UserEntity entity) {
-        return em.merge(entity);
+        if (entity.getId() == null) {
+            em.persist(entity);
+            return entity;
+        } else {
+            return em.merge(entity);
+        }
     }
 
     public UserEntity get(int id) {

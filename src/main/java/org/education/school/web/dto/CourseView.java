@@ -1,9 +1,12 @@
 package org.education.school.web.dto;
 
+import org.education.school.service.dto.Course;
+
 import java.util.Date;
 
 public class CourseView {
 
+    private int id;
     private String title;
     private String level;
     private String description;
@@ -13,12 +16,21 @@ public class CourseView {
     public CourseView() {
     }
 
-    public CourseView(String title, String level, String description, Date startDate, TeacherLinkView teacher) {
+    public CourseView(int id, String title, String level, String description, Date startDate, TeacherLinkView teacher) {
+        this.id = id;
         this.title = title;
         this.level = level;
         this.description = description;
         this.startDate = startDate;
         this.teacher = teacher;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -59,5 +71,12 @@ public class CourseView {
 
     public void setTeacher(TeacherLinkView teacher) {
         this.teacher = teacher;
+    }
+
+    public static CourseView of(Course course) {
+        TeacherLinkView teacherLinkView = TeacherLinkView.of(course.teacher);
+        return new CourseView(
+                course.id, course.title, course.level, course.description, course.startDate, teacherLinkView
+        );
     }
 }

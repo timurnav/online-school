@@ -3,7 +3,10 @@ package org.education.school.repository.entity;
 import org.education.school.service.dto.UserType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @DiscriminatorValue("student")
@@ -25,12 +28,31 @@ public class StudentEntity extends UserEntity {
             inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
     private List<CourseEntity> learningCourses;
 
+    @ElementCollection
+    @CollectionTable(name = "student_course", joinColumns = @JoinColumn(name = "student_id"))
+    @Column(name = "course_id")
+    public Set<Integer> learningCourseIds;
+
     public List<CourseEntity> getLearningCourses() {
+        if (learningCourses == null) {
+            learningCourses = new ArrayList<>();
+        }
         return learningCourses;
     }
 
     public void setLearningCourses(List<CourseEntity> learningCourses) {
         this.learningCourses = learningCourses;
+    }
+
+    public Set<Integer> getLearningCourseIds() {
+        if (learningCourseIds == null) {
+            learningCourseIds = new HashSet<>();
+        }
+        return learningCourseIds;
+    }
+
+    public void setLearningCourseIds(Set<Integer> learningCourseIds) {
+        this.learningCourseIds = learningCourseIds;
     }
 
     @Override
