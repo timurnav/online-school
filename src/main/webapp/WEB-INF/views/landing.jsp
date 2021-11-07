@@ -165,7 +165,8 @@
                     <li class="teachers-item">
                         <div class="teacher">
                             <img class="teacher__img"
-                                 src="/uploaded/images/${teacher.img}" alt="${teacher.name} аватар">
+                                 src="${teacher.img == null ? 'resources/img/no_photo.jpg' : '/uploaded/images/'.concat(teacher.img)}"
+                                 alt="${teacher.name} аватар">
                             <div class="teacher__name">
                                     ${teacher.name}
                             </div>

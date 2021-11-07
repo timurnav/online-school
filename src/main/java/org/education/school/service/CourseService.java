@@ -7,6 +7,7 @@ import org.education.school.repository.entity.LessonEntity;
 import org.education.school.service.dto.Course;
 import org.education.school.service.dto.CourseStudent;
 import org.education.school.service.dto.Teacher;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class CourseService {
 
     private final CourseRepository repository;
@@ -23,7 +25,8 @@ public class CourseService {
     }
 
     public List<Course> getAll() {
-        Map<Integer, List<LessonEntity>> lessons = repository.getAllWithLessons().stream()
+        List<CourseEntity> allWithLessons = repository.getAllWithLessons();
+        Map<Integer, List<LessonEntity>> lessons = allWithLessons.stream()
                 .collect(Collectors.toMap(GlobalSeqIdEntity::getId, CourseEntity::getLessons));
         List<CourseEntity> entities = repository.getAllWithUsers();
         return entities.stream()

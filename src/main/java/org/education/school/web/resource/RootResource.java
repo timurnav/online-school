@@ -1,5 +1,7 @@
 package org.education.school.web.resource;
 
+import org.education.school.service.CourseService;
+import org.education.school.service.TeacherService;
 import org.education.school.web.dto.CourseView;
 import org.education.school.web.dto.SchoolStatView;
 import org.education.school.web.dto.TeacherLinkView;
@@ -9,43 +11,50 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class RootResource {
 
+    private final TeacherService teacherService;
+    private final CourseService courseService;
+
+    public RootResource(TeacherService teacherService,
+                        CourseService courseService) {
+        this.teacherService = teacherService;
+        this.courseService = courseService;
+    }
+
     @GetMapping("/")
-    public String root(Model model) throws ParseException {
+    public String root(Model model) {
+        Map<Integer, List<String>> coursesByTeacher = new HashMap<>();
+        List<CourseView> courses = new ArrayList<>();
+        courseService.getAll()
+                .forEach(c -> {
+                    TeacherLinkView teacherLink = null;
+                    if (c.teacher != null) {
+                        coursesByTeacher.computeIfAbsent(c.teacher.id, id -> new ArrayList<>())
+                                .add(c.title);
+                        teacherLink = new TeacherLinkView();
+                        teacherLink.setId(c.teacher.id);
+                        teacherLink.setName(c.teacher.fullName);
+                    }
+                    CourseView courseView = new CourseView(c.id, c.title, c.level, c.description, c.startDate, teacherLink);
+                    courses.add(courseView);
+                });
+        List<TeacherView> teacherViews = teacherService.getAll().stream()
+                .map(t -> new TeacherView(t.id, t.fullName, t.image, t.title, coursesByTeacher.getOrDefault(t.id, Collections.emptyList())))
+                .collect(Collectors.toList());
+
         int alumni = 25000;
         SchoolStatView schoolStat = new SchoolStatView(
-                alumni, 8, 4800, 300, alumni / 5
-        );
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        TeacherLinkView teacherLink = new TeacherLinkView();
-        teacherLink.setName("Тимур Мухитдинов");
-        List<CourseView> courses = List.of(
-                new CourseView(1, "Основы Java", "ENTRY",
-                        "Курс Introduction Java предназначен для тех, кто только начинает свой путь в IT-индустрии и не имеет представления об основах программирования. Поcле окончания курса Выпускники обладают достаточной базой для выбора пути дальнейшего развития в IT-сфере.",
-                        dateFormat.parse("2021-09-03"), teacherLink
-                ),
-                new CourseView(2, "Java Elementary", "BASIC",
-                        "На курсе Студенты научатся создавать Java-приложения, углубят свои знания в Java Core и на практике приобретут понимание принципов ООП. Этот курс рассчитан на слушателей с базовыми знаниями в любом С-подобном языке программирования.",
-                        dateFormat.parse("2021-09-03"), teacherLink
-                ),
-                new CourseView(3, "Java Enterprise", "ADVANCED",
-                        "В процессе обучения Студенты курса Java Enterprise освоят стек EE-технологий, используемый для создания приложений и сервисов бизнес-уровня, что позволит им стать более востребованными на современном IT-рынке.",
-                        dateFormat.parse("2021-09-03"), teacherLink
-                )
-        );
-        List<TeacherView> teachers = List.of(
-                new TeacherView(1, "Тимур Мухитдинов", "aaa.jpg", "Lead Developer в SberDevices",
-                        List.of("Основы Java", "Java Elementary", "Java Enterprise"))
+                alumni, 8, 4800, teacherViews.size(), alumni / 5
         );
 
         model.addAttribute("stat", schoolStat);
         model.addAttribute("courses", courses);
-        model.addAttribute("teachers", teachers);
+        model.addAttribute("teachers", teacherViews);
         return "landing";
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = CourseEntity.GET_ALL, query = "SELECT c FROM CourseEntity c"),
         @NamedQuery(name = CourseEntity.GET_ALL_WITH_USERS, query = "SELECT c FROM CourseEntity c LEFT JOIN FETCH c.teacher LEFT JOIN FETCH c.students"),
-        @NamedQuery(name = CourseEntity.GET_ALL_WITH_LESSONS, query = "SELECT c FROM CourseEntity c LEFT JOIN FETCH c.teacher LEFT JOIN FETCH c.lessons"),
+        @NamedQuery(name = CourseEntity.GET_ALL_WITH_LESSONS, query = "SELECT DISTINCT c FROM CourseEntity c LEFT JOIN FETCH c.teacher LEFT JOIN FETCH c.lessons"),
         @NamedQuery(name = CourseEntity.DELETE, query = "DELETE FROM CourseEntity c WHERE c.id=:id")
 })
 public class CourseEntity extends LearningItemEntity {

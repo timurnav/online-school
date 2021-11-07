@@ -20,7 +20,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/lms/**").hasRole("USER")
-                .antMatchers("/", "/resources/**").permitAll()
+                .antMatchers("/", "/resources/**", "/uploaded/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -30,14 +30,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .and()
                 .httpBasic();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("password")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("password")).roles("ADMIN");
     }
 
     @Bean

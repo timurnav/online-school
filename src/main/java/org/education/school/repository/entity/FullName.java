@@ -11,6 +11,14 @@ public class FullName {
     @Column(nullable = false)
     private String lastName;
 
+    public FullName() {
+    }
+
+    public FullName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public String getFirstName() {
         return firstName;
     }

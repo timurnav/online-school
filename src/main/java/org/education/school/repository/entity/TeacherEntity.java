@@ -23,6 +23,7 @@ public class TeacherEntity extends UserEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id")
     private TeacherEntity supervisor;
+    private String title;
 
     public List<CourseEntity> getTeachingCourses() {
         return teachingCourses;
@@ -43,5 +44,13 @@ public class TeacherEntity extends UserEntity {
     @Override
     public UserType type() {
         return UserType.TEACHER;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

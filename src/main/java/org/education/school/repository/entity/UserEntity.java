@@ -4,6 +4,7 @@ import org.education.school.service.dto.UserType;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +24,12 @@ public abstract class UserEntity extends GlobalSeqIdEntity {
     @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL)
     private UserContactsEntity contacts = new UserContactsEntity(this);
     private boolean banned;
+    private String image;
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    @ElementCollection
+    private Set<UserRole> roles;
     @Version
     private int version;
 
@@ -81,6 +88,22 @@ public abstract class UserEntity extends GlobalSeqIdEntity {
 
     public void setBanned(boolean banned) {
         this.banned = banned;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
     }
 
     @Transient

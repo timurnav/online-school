@@ -6,6 +6,8 @@ import org.education.school.repository.TeacherRepository;
 import org.education.school.repository.UserRepository;
 import org.education.school.repository.entity.*;
 import org.education.school.service.dto.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,21 +15,25 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class UserAdminService {
 
     private final UserRepository userRepository;
     private final TeacherRepository teacherRepository;
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserAdminService(UserRepository userRepository,
                             TeacherRepository teacherRepository,
                             StudentRepository studentRepository,
-                            CourseRepository courseRepository) {
+                            CourseRepository courseRepository,
+                            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.teacherRepository = teacherRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
@@ -49,7 +55,7 @@ public class UserAdminService {
         UserEntity admin;
         if (dto.id == null) {
             admin = new AdminEntity();
-            admin.setPassword("0000");
+            admin.setPassword(passwordEncoder.encode("0000"));
         } else {
             admin = teacherRepository.get(dto.id);
         }
@@ -61,7 +67,7 @@ public class UserAdminService {
         TeacherEntity entity;
         if (dto.id == null) {
             entity = new TeacherEntity();
-            entity.setPassword("0000");
+            entity.setPassword(passwordEncoder.encode("0000"));
         } else {
             entity = teacherRepository.get(dto.id);
         }
