@@ -29,7 +29,7 @@
                     </svg>
                     Позвонить
                 </a>
-                <a class="header-login" href="#">
+                <a class="header-login" href="/profile">
                     <span class="header-login__arrow"></span>
                     Личный кабинет
                 </a>

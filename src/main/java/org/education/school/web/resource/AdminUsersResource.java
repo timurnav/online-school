@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("admin/users")
-public class UsersResource {
+public class AdminUsersResource {
 
     private final UserAdminService service;
     private final CourseService courseService;
 
-    public UsersResource(UserAdminService service, CourseService courseService) {
+    public AdminUsersResource(UserAdminService service, CourseService courseService) {
         this.service = service;
         this.courseService = courseService;
     }

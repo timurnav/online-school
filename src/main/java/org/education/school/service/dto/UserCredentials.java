@@ -10,9 +10,9 @@ public class UserCredentials implements UserDetails {
 
     public final int id;
     public final String email;
-    public final String password;
-    public final Set<UserRole> roles;
-    public final boolean banned;
+    private final String password;
+    private final Set<UserRole> roles;
+    private final boolean banned;
 
     public UserCredentials(int id, String email, String password, Set<UserRole> roles, boolean banned) {
         this.id = id;
