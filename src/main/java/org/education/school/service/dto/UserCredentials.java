@@ -23,7 +23,7 @@ public class UserCredentials implements UserDetails {
     }
 
     @Override
-    public Collection<UserRole> getAuthorities() {
+    public Set<UserRole> getAuthorities() {
         return roles;
     }
 

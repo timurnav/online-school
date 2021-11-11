@@ -15,6 +15,28 @@
 </head>
 <body>
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-info float-end" href="/lms">
+                            <span class="fa fa-user"></span>
+                            Учебная платформа
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-danger float-end" href="/logout">
+                            <span class="fa fa-sign-out-alt"></span>
+                            Выйти
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container">
     <div class="main-body">
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">

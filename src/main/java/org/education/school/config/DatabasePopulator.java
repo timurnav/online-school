@@ -1,9 +1,6 @@
 package org.education.school.config;
 
-import org.education.school.repository.AdminRepository;
-import org.education.school.repository.CourseRepository;
-import org.education.school.repository.LessonRepository;
-import org.education.school.repository.TeacherRepository;
+import org.education.school.repository.*;
 import org.education.school.repository.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,18 +21,21 @@ public class DatabasePopulator {
 
     private final AdminRepository adminRepository;
     private final TeacherRepository teacherRepository;
+    private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
     private final LessonRepository lessonRepository;
     private final PasswordEncoder passwordEncoder;
 
     public DatabasePopulator(AdminRepository adminRepository,
                              TeacherRepository teacherRepository,
+                             StudentRepository studentRepository,
                              CourseRepository courseRepository,
                              LessonRepository lessonRepository,
                              PasswordEncoder passwordEncoder) {
         this.adminRepository = adminRepository;
 
         this.teacherRepository = teacherRepository;
+        this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.lessonRepository = lessonRepository;
         this.passwordEncoder = passwordEncoder;
@@ -74,7 +74,7 @@ public class DatabasePopulator {
         teacher.getContacts().setEmail("timurnav@gmail.com");
         teacher.setPassword(passwordEncoder.encode("password"));
         teacher.setImage("aaa.jpg");
-        teacher.setRoles(Set.of(UserRole.USER));
+        teacher.setRoles(Set.of(UserRole.USER, UserRole.TEACHER));
         teacherRepository.save(teacher);
 
         CourseEntity javaEntry = new CourseEntity();
@@ -107,5 +107,21 @@ public class DatabasePopulator {
                 lessonRepository.save(lesson);
             }
         }
+
+        StudentEntity student1 = new StudentEntity();
+        student1.setFullName(new FullName("Просто", "Дима"));
+        student1.getContacts().setEmail("dima@gmail.com");
+        student1.setPassword(passwordEncoder.encode("password"));
+        student1.setRoles(Set.of(UserRole.USER));
+        student1.getLearningCourses().addAll(courses);
+        studentRepository.save(student1);
+
+        StudentEntity student2 = new StudentEntity();
+        student2.setFullName(new FullName("Просто", "Аня"));
+        student2.getContacts().setEmail("ana@gmail.com");
+        student2.setPassword(passwordEncoder.encode("password"));
+        student2.setRoles(Set.of(UserRole.USER));
+        student2.getLearningCourses().addAll(courses);
+        studentRepository.save(student2);
     }
 }

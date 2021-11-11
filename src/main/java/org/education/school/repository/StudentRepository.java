@@ -1,6 +1,8 @@
 package org.education.school.repository;
 
+import org.education.school.repository.entity.CourseEntity;
 import org.education.school.repository.entity.StudentEntity;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,12 @@ public class StudentRepository {
 
     public List<StudentEntity> getAllWithCont() {
         return em.createNamedQuery(StudentEntity.GET_ALL_WITH_CONT, StudentEntity.class)
+                .getResultList();
+    }
+
+    public List<CourseEntity> getStudentCourses(int studentId) {
+        return em.createNamedQuery(StudentEntity.GET_COURSES_WITH_LESSONS, CourseEntity.class)
+                .setParameter("id", studentId)
                 .getResultList();
     }
 }

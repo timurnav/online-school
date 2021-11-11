@@ -13,6 +13,8 @@ import java.util.List;
         @NamedQuery(name = CourseEntity.GET_ALL, query = "SELECT c FROM CourseEntity c"),
         @NamedQuery(name = CourseEntity.GET_ALL_WITH_USERS, query = "SELECT c FROM CourseEntity c LEFT JOIN FETCH c.teacher LEFT JOIN FETCH c.students"),
         @NamedQuery(name = CourseEntity.GET_ALL_WITH_LESSONS, query = "SELECT DISTINCT c FROM CourseEntity c LEFT JOIN FETCH c.teacher LEFT JOIN FETCH c.lessons"),
+        @NamedQuery(name = CourseEntity.GET_BY_TEACHER_WITH_LESSONS, query = "SELECT DISTINCT c FROM CourseEntity c LEFT JOIN FETCH c.lessons WHERE c.teacher.id=:id"),
+        @NamedQuery(name = CourseEntity.GET_LESSON_WITH_HW, query = "SELECT DISTINCT l FROM LessonEntity l LEFT JOIN FETCH l.homeWorks WHERE l.id=:id"),
         @NamedQuery(name = CourseEntity.DELETE, query = "DELETE FROM CourseEntity c WHERE c.id=:id")
 })
 public class CourseEntity extends LearningItemEntity {
@@ -21,6 +23,8 @@ public class CourseEntity extends LearningItemEntity {
     public static final String GET_ALL_WITH_USERS = "Courses.getAllWithTeachersAndStudents";
     public static final String GET_ALL_WITH_LESSONS = "Courses.getAllWithLessons";
     public static final String DELETE = "Courses.delete";
+    public static final String GET_BY_TEACHER_WITH_LESSONS = "Courses.getByTeacherWithLessons";
+    public static final String GET_LESSON_WITH_HW = "Courses.getLessonWithHW";
 
     @ManyToMany(mappedBy = "learningCourses")
     private List<StudentEntity> students;

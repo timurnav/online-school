@@ -29,9 +29,18 @@
                     </svg>
                     Позвонить
                 </a>
-                <a class="header-login" href="/profile">
+                <a class="header-login header-item" href="/login">
                     <span class="header-login__arrow"></span>
-                    Личный кабинет
+                    Войти
+                </a>
+                <a class="header-item" href="/profile">
+                    Профиль
+                </a>
+                <a class="header-item" href="/lms">
+                    Учебная платформа
+                </a>
+                <a class="header-item" href="/logout">
+                    Выйти
                 </a>
             </div>
         </div>

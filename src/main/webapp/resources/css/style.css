@@ -112,8 +112,17 @@ input, textarea {
     color: #fff;
 }
 
-.header-login {
+.header-item {
+    margin-left: 12px;
     color: #fff;
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid white;
+}
+
+.header-login {
+    border-radius: 4px;
+    border: none;
 }
 
 .header-login__arrow {
@@ -305,6 +314,7 @@ input, textarea {
 .teacher__courses-heading {
     padding-top: 16px;
 }
+
 .teacher__courses {
     padding: 8px;
 }
